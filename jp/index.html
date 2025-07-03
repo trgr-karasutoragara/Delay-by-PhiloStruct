@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>哲学概念の誤用と社会構造問題議論の停滞</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: #ffffff;
+            font-size: 15px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .disclaimer {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 40px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+        
+        .disclaimer h3 {
+            color: #2d3748;
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 16px;
+            letter-spacing: -0.025em;
+        }
+        
+        .header p {
+            font-size: 16px;
+            color: #718096;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .era-section {
+            margin-bottom: 50px;
+        }
+        
+        .era-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 24px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .philosophers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+        }
+        
+        .philosopher-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .philosopher-card:hover {
+            border-color: #3182ce;
+            box-shadow: 0 4px 12px rgba(49, 130, 206, 0.1);
+        }
+        
+        .philosopher-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 4px;
+        }
+        
+        .philosopher-period {
+            font-size: 13px;
+            color: #718096;
+            margin-bottom: 8px;
+        }
+        
+        .philosopher-core {
+            font-size: 14px;
+            color: #4a5568;
+        }
+        
+        .misuse-panel {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        
+        .panel-header {
+            padding: 24px 24px 0 24px;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 24px;
+        }
+        
+        .close-btn {
+            float: right;
+            font-size: 24px;
+            color: #a0aec0;
+            cursor: pointer;
+            line-height: 1;
+            margin-bottom: 16px;
+            user-select: none;
+        }
+        
+        .close-btn:hover {
+            color: #4a5568;
+        }
+        
+        .misuse-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 16px;
+        }
+        
+        .panel-content {
+            padding: 0 24px 24px 24px;
+        }
+        
+        .misuse-section {
+            margin-bottom: 28px;
+        }
+        
+        .misuse-section h3 {
+            color: #2d3748;
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .misuse-example {
+            background: #fed7d7;
+            border: 1px solid #feb2b2;
+            padding: 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .correct-understanding {
+            background: #c6f6d5;
+            border: 1px solid #9ae6b4;
+            padding: 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .problem-impact {
+            background: #feebc8;
+            border: 1px solid #fbd38d;
+            padding: 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .misuse-color { background: #fed7d7; }
+        .correct-color { background: #c6f6d5; }
+        .impact-color { background: #feebc8; }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 16px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .philosophers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .misuse-panel {
+                max-width: 95vw;
+                max-height: 85vh;
+            }
+            
+            .panel-header,
+            .panel-content {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            
+            .legend {
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="disclaimer">
+            <h3>重要事項</h3>
+            <p>これは、社会構造問題の解決を支援する意図で制作されたプロトタイプです。MITライセンスでHTMLだから、あなたが自由に拡張して下さい。サンプルデモであり、答えを押し付けるものではありません。本資料は教育・研究目的であり、ここで示される解釈は一つの視点に過ぎません。異なる見解や批判的検討を歓迎します。</p>
+        </div>
+        
+        <div class="header">
+            <h1>哲学概念の誤用と社会構造問題議論の停滞</h1>
+            <p>哲学者をクリックして、よくある誤用と正しい理解、そして社会への影響を確認してください</p>
+        </div>
+        
+        <div class="era-section">
+            <h2 class="era-title">古代</h2>
+            <div class="philosophers-grid">
+                <div class="philosopher-card" data-philosopher="socrates">
+                    <div class="philosopher-name">ソクラテス</div>
+                    <div class="philosopher-period">(前469-前399)</div>
+                    <div class="philosopher-core">無知の知、対話を通じた探求</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="plato">
+                    <div class="philosopher-name">プラトン</div>
+                    <div class="philosopher-period">(前427-前347)</div>
+                    <div class="philosopher-core">イデア論、魂の不死、哲人政治</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="aristotle">
+                    <div class="philosopher-name">アリストテレス</div>
+                    <div class="philosopher-period">(前384-前322)</div>
+                    <div class="philosopher-core">現実主義、形而上学、論理学</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="era-section">
+            <h2 class="era-title">中世</h2>
+            <div class="philosophers-grid">
+                <div class="philosopher-card" data-philosopher="augustine">
+                    <div class="philosopher-name">アウグスティヌス</div>
+                    <div class="philosopher-period">(354-430)</div>
+                    <div class="philosopher-core">キリスト教神学とプラトン哲学の融合</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="aquinas">
+                    <div class="philosopher-name">トマス・アクィナス</div>
+                    <div class="philosopher-period">(1225-1274)</div>
+                    <div class="philosopher-core">アリストテレス哲学と神学の統合</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="era-section">
+            <h2 class="era-title">近世</h2>
+            <div class="philosophers-grid">
+                <div class="philosopher-card" data-philosopher="descartes">
+                    <div class="philosopher-name">デカルト</div>
+                    <div class="philosopher-period">(1596-1650)</div>
+                    <div class="philosopher-core">合理主義、方法的懐疑</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="locke">
+                    <div class="philosopher-name">ロック</div>
+                    <div class="philosopher-period">(1632-1704)</div>
+                    <div class="philosopher-core">経験論、社会契約論、自然権</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="hume">
+                    <div class="philosopher-name">ヒューム</div>
+                    <div class="philosopher-period">(1711-1776)</div>
+                    <div class="philosopher-core">経験論、懐疑主義、因果性批判</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="kant">
+                    <div class="philosopher-name">カント</div>
+                    <div class="philosopher-period">(1724-1804)</div>
+                    <div class="philosopher-core">批判哲学、道徳律</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="era-section">
+            <h2 class="era-title">近代</h2>
+            <div class="philosophers-grid">
+                <div class="philosopher-card" data-philosopher="hegel">
+                    <div class="philosopher-name">ヘーゲル</div>
+                    <div class="philosopher-period">(1770-1831)</div>
+                    <div class="philosopher-core">弁証法、絶対精神、歴史哲学</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="kierkegaard">
+                    <div class="philosopher-name">キルケゴール</div>
+                    <div class="philosopher-period">(1813-1855)</div>
+                    <div class="philosopher-core">実存主義、不条理、信仰の跳躍</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="marx">
+                    <div class="philosopher-name">マルクス</div>
+                    <div class="philosopher-period">(1818-1883)</div>
+                    <div class="philosopher-core">唯物史観、資本主義批判</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="nietzsche">
+                    <div class="philosopher-name">ニーチェ</div>
+                    <div class="philosopher-period">(1844-1900)</div>
+                    <div class="philosopher-core">ニヒリズム批判、超人思想</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="era-section">
+            <h2 class="era-title">現代</h2>
+            <div class="philosophers-grid">
+                <div class="philosopher-card" data-philosopher="husserl">
+                    <div class="philosopher-name">フッサール</div>
+                    <div class="philosopher-period">(1859-1938)</div>
+                    <div class="philosopher-core">現象学、意識の志向性</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="russell">
+                    <div class="philosopher-name">ラッセル</div>
+                    <div class="philosopher-period">(1872-1970)</div>
+                    <div class="philosopher-core">分析哲学、論理的原子論</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="barth">
+                    <div class="philosopher-name">カール・バルト</div>
+                    <div class="philosopher-period">(1886-1968)</div>
+                    <div class="philosopher-core">弁証法神学、神の超越性</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="heidegger">
+                    <div class="philosopher-name">ハイデガー</div>
+                    <div class="philosopher-period">(1889-1976)</div>
+                    <div class="philosopher-core">存在論、現存在の分析</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="wittgenstein">
+                    <div class="philosopher-name">ウィトゲンシュタイン</div>
+                    <div class="philosopher-period">(1889-1951)</div>
+                    <div class="philosopher-core">言語哲学、言語ゲーム</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="quine">
+                    <div class="philosopher-name">クワイン</div>
+                    <div class="philosopher-period">(1908-2000)</div>
+                    <div class="philosopher-core">意味の不確定性、還元主義批判</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="sartre">
+                    <div class="philosopher-name">サルトル</div>
+                    <div class="philosopher-period">(1905-1980)</div>
+                    <div class="philosopher-core">実存主義、実存は本質に先立つ</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="foucault">
+                    <div class="philosopher-name">フーコー</div>
+                    <div class="philosopher-period">(1926-1984)</div>
+                    <div class="philosopher-core">権力論、知と権力の関係</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="era-section">
+            <h2 class="era-title">現代後期</h2>
+            <div class="philosophers-grid">
+                <div class="philosopher-card" data-philosopher="rawls">
+                    <div class="philosopher-name">ロールズ</div>
+                    <div class="philosopher-period">(1921-2002)</div>
+                    <div class="philosopher-core">政治哲学、正義論</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="derrida">
+                    <div class="philosopher-name">ジャック・デリダ</div>
+                    <div class="philosopher-period">(1930-2004)</div>
+                    <div class="philosopher-core">脱構築、意味の不確定性</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="butler">
+                    <div class="philosopher-name">バトラー</div>
+                    <div class="philosopher-period">(1956-)</div>
+                    <div class="philosopher-core">ジェンダー論、パフォーマティビティ</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color misuse-color"></div>
+                <span>よくある誤用</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color correct-color"></div>
+                <span>正しい理解</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color impact-color"></div>
+                <span>社会への影響</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="misuse-panel" id="misusePanel">
+        <div class="panel-header">
+            <span class="close-btn" id="closeBtn">&times;</span>
+            <h2 class="misuse-title" id="misuseTitle"></h2>
+        </div>
+        <div class="panel-content" id="panelContent"></div>
+    </div>
+    
+    <script>
+        const philosopherData = {
+            socrates: {
+                name: "ソクラテス",
+                misuse: "「何も分からないのだから議論しても無駄」という思考停止の正当化",
+                correct: "「無知の知」は自分の知識の限界を認識し、より良い理解を求めて対話を続けること",
+                impact: "社会問題について「専門家でないから意見を言えない」として市民の議論参加を阻害し、民主的プロセスを弱体化"
+            },
+            plato: {
+                name: "プラトン", 
+                misuse: "「理想的な社会」を根拠に現実の不完全性を批判し、改革努力を否定",
+                correct: "イデア論は現実をより良く理解するための概念的道具であり、現実改善の指針",
+                impact: "「完璧でない改革なら意味がない」として段階的改善を拒否し、社会進歩を停滞させる"
+            },
+            aristotle: {
+                name: "アリストテレス",
+                misuse: "論理学を形式的規則として絶対視し、文脈や状況を無視した議論",
+                correct: "論理学は思考の道具であり、具体的状況における実践的知恵（フロネシス）が重要",
+                impact: "複雑な社会問題を単純な論理式に還元し、現実的解決策の模索を阻害"
+            },
+            augustine: {
+                name: "アウグスティヌス",
+                misuse: "「原罪」概念を利用して人間の根本的悪を強調し、社会改革の可能性を否定",
+                correct: "原罪は人間の限界を認識しつつ、恩寵による救いと改善の可能性を示す",
+                impact: "「人間は根本的に悪だから制度改革は無意味」として社会正義への取り組みを諦観に導く"
+            },
+            aquinas: {
+                name: "トマス・アクィナス",
+                misuse: "「自然法」を根拠に特定の社会制度や価値観を絶対化",
+                correct: "自然法は理性による道徳的探求であり、時代状況に応じた解釈が必要",
+                impact: "既存の権力構造や差別的制度を「自然な秩序」として正当化し、変革を阻む"
+            },
+            descartes: {
+                name: "デカルト",
+                misuse: "「すべてを疑え」を「何も信じられない」という相対主義や虚無主義に転換",
+                correct: "方法的懐疑は確実な知識の基盤を見つけるための建設的な手法",
+                impact: "「真実は存在しない」として事実に基づく政策議論を無力化し、ポスト真実社会を助長"
+            },
+            locke: {
+                name: "ロック",
+                misuse: "「自然権」を無制限な個人主義や私有財産権の絶対化に利用",
+                correct: "自然権は社会契約の基盤であり、他者の権利との調整が必要",
+                impact: "社会的責任を無視した極端な個人主義により、格差拡大や共同体の解体を正当化"
+            },
+            hume: {
+                name: "ヒューム",
+                misuse: "「事実と価値の区別」を「価値判断は主観的だから議論不可能」として誤解",
+                correct: "事実と価値の区別は、より精密な道徳的議論のための出発点",
+                impact: "道徳的・政治的判断を「個人の自由」として相対化し、社会的合意形成を困難にする"
+            },
+            kant: {
+                name: "カント",
+                misuse: "道徳律を硬直的な規則として適用し、状況や結果を考慮しない形式主義",
+                correct: "道徳律は実践理性による普遍的原理であり、具体的状況での判断力が重要",
+                impact: "複雑な社会問題に対して柔軟性を欠いた対応により、実効性のない政策や社会的分裂を招く"
+            },
+            hegel: {
+                name: "ヘーゲル",
+                misuse: "弁証法を単純な「対立→統合」のパターンとして誤解し、安易な妥協を正当化",
+                correct: "弁証法は矛盾を通じた発展的変化の論理であり、質的転換を伴う",
+                impact: "根本的な構造問題を表面的な調整で解決しようとし、本質的改革を回避"
+            },
+            kierkegaard: {
+                name: "キルケゴール",
+                misuse: "実存主義を極端な個人主義として解釈し、社会的責任を放棄",
+                correct: "実存は他者との関係性の中で形成される責任ある選択",
+                impact: "「個人の選択だから社会は関与すべきでない」として社会問題への集合的対応を阻害"
+            },
+            marx: {
+                name: "マルクス",
+                misuse: "階級闘争論を単純な対立図式として適用し、複雑な社会関係を二元化",
+                correct: "階級分析は資本主義的生産関係の構造的理解のための道具",
+                impact: "複雑な社会問題を「敵vs味方」の構図に単純化し、建設的対話と協力を困難にする"
+            },
+            nietzsche: {
+                name: "ニーチェ",
+                misuse: "「神は死んだ」を道徳的相対主義の根拠として利用し、「何をしても良い」と誤解",
+                correct: "既存価値の批判は新たな価値創造への呼びかけであり、より高い責任を要求",
+                impact: "道徳的責任を放棄し、社会的連帯や共通善への取り組みを破壊"
+            },
+            husserl: {
+                name: "フッサール",
+                misuse: "現象学を主観主義として誤解し、「個人の体験が全て」として客観性を否定",
+                correct: "現象学は意識の構造的分析により、より普遍的な理解を目指す",
+                impact: "共通の事実認識を困難にし、エビデンスに基づく政策議論を阻害"
+            },
+            russell: {
+                name: "ラッセル",
+                misuse: "論理実証主義を科学至上主義として誤解し、人文的価値を軽視",
+                correct: "論理分析は明確な思考のための道具であり、価値の重要性を否定するものではない",
+                impact: "技術的効率性のみを重視し、社会的価値や人間性を軽視した政策決定"
+            },
+            barth: {
+                name: "カール・バルト",
+                misuse: "神の超越性を理由に世俗的社会問題への関与を拒否",
+                correct: "神の超越性こそが現実世界での正義実現への責任を生む",
+                impact: "宗教的価値を私的領域に閉じ込め、社会正義への宗教的動機を無力化"
+            },
+            heidegger: {
+                name: "ハイデガー",
+                misuse: "「存在への問い」を抽象的思索として誤解し、現実逃避の正当化",
+                correct: "存在論は現実世界での具体的な存在のあり方への問い",
+                impact: "哲学的思索を実践から切り離し、社会問題への知的関与を阻害"
+            },
+            wittgenstein: {
+                name: "ウィトゲンシュタイン",
+                misuse: "言語ゲーム論を相対主義として解釈し、「価値観は文化によって決まる」と単純化",
+                correct: "言語ゲームは共有された実践の中での意味形成を示し、相互理解の可能性を開く",
+                impact: "異なる文化間の対話を不可能とし、多様性を理由とした分離主義を助長"
+            },
+            quine: {
+                name: "クワイン",
+                misuse: "意味の不確定性を「客観的真理は存在しない」とする極端な相対主義に発展",
+                correct: "意味の不確定性は言語と理論の修正可能性を示し、より良い理論への道を開く",
+                impact: "科学的知識や専門的判断の権威を失墜させ、反知性主義を助長"
+            },
+            sartre: {
+                name: "サルトル",
+                misuse: "「実存は本質に先立つ」を「何にでもなれる」とする無責任な自由主義",
+                correct: "自由は状況の中での責任ある選択であり、他者への責任を含む",
+                impact: "社会的制約や構造的不平等を無視し、「努力すれば何でもできる」という自己責任論を強化"
+            },
+            foucault: {
+                name: "フーコー",
+                misuse: "権力論を陰謀論として誤解し、「全ては権力の操作」として建設的改革を否定",
+                correct: "権力分析は支配メカニズムの理解を通じて、より良い社会関係の構築を目指す",
+                impact: "制度改革や政治参加を「権力ゲーム」として軽視し、社会変革への取り組みを無力化"
+            },
+            rawls: {
+                name: "ロールズ",
+                misuse: "「無知のヴェール」を現実の不平等を無視する抽象的思考実験として誤用",
+                correct: "無知のヴェールは既存の特権を排除して公正な社会制度を考えるための方法",
+                impact: "既得権益を持つ者が自身の立場を隠蔽し、不平等な現状を正当化する道具として悪用"
+            },
+            derrida: {
+                name: "ジャック・デリダ",
+                misuse: "脱構築を「全てを破壊せよ」とする破壊主義として誤解",
+                correct: "脱構築は固定化された意味や権力構造の批判的検討を通じて、新たな可能性を開く",
+                impact: "建設的批判を単なる破壊として扱い、制度改善や社会発展への努力を阻害"
+            },
+            butler: {
+                name: "バトラー",
+                misuse: "ジェンダーのパフォーマティビティを「性別は完全に自由に選択できる」とする単純化",
+                correct: "パフォーマティビティは社会的制約の中での反復的実践による主体形成の過程",
+                impact: "ジェンダー問題を個人の選択の問題に還元し、構造的差別や制度的変革の必要性を見落とす"
+            }
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const philosopherCards = document.querySelectorAll('.philosopher-card');
+            const overlay = document.getElementById('overlay');
+            const misusePanel = document.getElementById('misusePanel');
+            const panelContent = document.getElementById('panelContent');
+            const misuseTitle = document.getElementById('misuseTitle');
+            const closeBtn = document.getElementById('closeBtn');
+            
+            philosopherCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const philosopherId = this.dataset.philosopher;
+                    const data = philosopherData[philosopherId];
+                    
+                    if (data) {
+                        misuseTitle.textContent = `${data.name}の概念の誤用`;
+                        
+                        panelContent.innerHTML = `
+                            <div class="misuse-section">
+                                <h3>❌ よくある誤用</h3>
+                                <div class="misuse-example">
+                                    ${data.misuse}
+                                </div>
+                            </div>
+                            
+                            <div class="misuse-section">
+                                <h3>✅ 正しい理解</h3>
+                                <div class="correct-understanding">
+                                    ${data.correct}
+                                </div>
+                            </div>
+                            
+                            <div class="misuse-section">
+                                <h3>⚠️ 社会構造問題議論への悪影響</h3>
+                                <div class="problem-impact">
+                                    ${data.impact}
+                                </div>
+                            </div>
+                        `;
+                        
+                        overlay.style.display = 'block';
+                        misusePanel.style.display = 'block';
+                    }
+                });
+            });
+            
+            function closePanel() {
+                overlay.style.display = 'none';
+                misusePanel.style.display = 'none';
+            }
+            
+            closeBtn.addEventListener('click', closePanel);
+            overlay.addEventListener('click', closePanel);
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closePanel();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

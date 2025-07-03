@@ -8,6 +8,7 @@ We are different. Because we are different, we discuss, adjust interests, and so
 
 ## Demo
 https://trgr-karasutoragara.github.io/Delay-by-PhiloStruct/en/
+
 https://trgr-karasutoragara.github.io/Delay-by-PhiloStruct/jp/
 
 ## License

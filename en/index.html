@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophical Concept Misuse and Social Structure Problem Discussion Stagnation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: #ffffff;
+            font-size: 15px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .disclaimer {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 40px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+        
+        .disclaimer h3 {
+            color: #2d3748;
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 16px;
+            letter-spacing: -0.025em;
+        }
+        
+        .header p {
+            font-size: 16px;
+            color: #718096;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .era-section {
+            margin-bottom: 50px;
+        }
+        
+        .era-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 24px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .philosophers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+        }
+        
+        .philosopher-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .philosopher-card:hover {
+            border-color: #3182ce;
+            box-shadow: 0 4px 12px rgba(49, 130, 206, 0.1);
+        }
+        
+        .philosopher-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 4px;
+        }
+        
+        .philosopher-period {
+            font-size: 13px;
+            color: #718096;
+            margin-bottom: 8px;
+        }
+        
+        .philosopher-core {
+            font-size: 14px;
+            color: #4a5568;
+        }
+        
+        .misuse-panel {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        
+        .panel-header {
+            padding: 24px 24px 0 24px;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 24px;
+        }
+        
+        .close-btn {
+            float: right;
+            font-size: 24px;
+            color: #a0aec0;
+            cursor: pointer;
+            line-height: 1;
+            margin-bottom: 16px;
+            user-select: none;
+        }
+        
+        .close-btn:hover {
+            color: #4a5568;
+        }
+        
+        .misuse-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 16px;
+        }
+        
+        .panel-content {
+            padding: 0 24px 24px 24px;
+        }
+        
+        .misuse-section {
+            margin-bottom: 28px;
+        }
+        
+        .misuse-section h3 {
+            color: #2d3748;
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .misuse-example {
+            background: #fed7d7;
+            border: 1px solid #feb2b2;
+            padding: 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .correct-understanding {
+            background: #c6f6d5;
+            border: 1px solid #9ae6b4;
+            padding: 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .problem-impact {
+            background: #feebc8;
+            border: 1px solid #fbd38d;
+            padding: 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .misuse-color { background: #fed7d7; }
+        .correct-color { background: #c6f6d5; }
+        .impact-color { background: #feebc8; }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 16px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .philosophers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .misuse-panel {
+                max-width: 95vw;
+                max-height: 85vh;
+            }
+            
+            .panel-header,
+            .panel-content {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            
+            .legend {
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="disclaimer">
+            <h3>Important Notice</h3>
+            <p>This is a prototype created with the intent to support solutions to social structural problems. It's HTML under MIT License, so you are free to extend it. This is a sample demo and does not impose answers. This material is for educational and research purposes, and the interpretations presented here are just one perspective. Different views and critical examinations are welcome.</p>
+        </div>
+        
+        <div class="header">
+            <h1>Philosophical Concept Misuse and Social Structure Problem Discussion Stagnation</h1>
+            <p>Click on philosophers to see common misuses, correct understanding, and their impact on society</p>
+        </div>
+        
+        <div class="era-section">
+            <h2 class="era-title">Ancient</h2>
+            <div class="philosophers-grid">
+                <div class="philosopher-card" data-philosopher="socrates">
+                    <div class="philosopher-name">Socrates</div>
+                    <div class="philosopher-period">(469-399 BCE)</div>
+                    <div class="philosopher-core">Knowledge of ignorance, inquiry through dialogue</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="plato">
+                    <div class="philosopher-name">Plato</div>
+                    <div class="philosopher-period">(427-347 BCE)</div>
+                    <div class="philosopher-core">Theory of Forms, immortality of soul, philosopher-kings</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="aristotle">
+                    <div class="philosopher-name">Aristotle</div>
+                    <div class="philosopher-period">(384-322 BCE)</div>
+                    <div class="philosopher-core">Realism, metaphysics, logic</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="era-section">
+            <h2 class="era-title">Medieval</h2>
+            <div class="philosophers-grid">
+                <div class="philosopher-card" data-philosopher="augustine">
+                    <div class="philosopher-name">Augustine</div>
+                    <div class="philosopher-period">(354-430)</div>
+                    <div class="philosopher-core">Fusion of Christian theology and Platonic philosophy</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="aquinas">
+                    <div class="philosopher-name">Thomas Aquinas</div>
+                    <div class="philosopher-period">(1225-1274)</div>
+                    <div class="philosopher-core">Integration of Aristotelian philosophy and theology</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="era-section">
+            <h2 class="era-title">Early Modern</h2>
+            <div class="philosophers-grid">
+                <div class="philosopher-card" data-philosopher="descartes">
+                    <div class="philosopher-name">René Descartes</div>
+                    <div class="philosopher-period">(1596-1650)</div>
+                    <div class="philosopher-core">Rationalism, methodical doubt</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="locke">
+                    <div class="philosopher-name">John Locke</div>
+                    <div class="philosopher-period">(1632-1704)</div>
+                    <div class="philosopher-core">Empiricism, social contract theory, natural rights</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="hume">
+                    <div class="philosopher-name">David Hume</div>
+                    <div class="philosopher-period">(1711-1776)</div>
+                    <div class="philosopher-core">Empiricism, skepticism, critique of causality</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="kant">
+                    <div class="philosopher-name">Immanuel Kant</div>
+                    <div class="philosopher-period">(1724-1804)</div>
+                    <div class="philosopher-core">Critical philosophy, moral law</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="era-section">
+            <h2 class="era-title">Modern</h2>
+            <div class="philosophers-grid">
+                <div class="philosopher-card" data-philosopher="hegel">
+                    <div class="philosopher-name">Georg Wilhelm Friedrich Hegel</div>
+                    <div class="philosopher-period">(1770-1831)</div>
+                    <div class="philosopher-core">Dialectics, absolute spirit, philosophy of history</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="kierkegaard">
+                    <div class="philosopher-name">Søren Kierkegaard</div>
+                    <div class="philosopher-period">(1813-1855)</div>
+                    <div class="philosopher-core">Existentialism, absurd, leap of faith</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="marx">
+                    <div class="philosopher-name">Karl Marx</div>
+                    <div class="philosopher-period">(1818-1883)</div>
+                    <div class="philosopher-core">Historical materialism, critique of capitalism</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="nietzsche">
+                    <div class="philosopher-name">Friedrich Nietzsche</div>
+                    <div class="philosopher-period">(1844-1900)</div>
+                    <div class="philosopher-core">Critique of nihilism, Übermensch concept</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="era-section">
+            <h2 class="era-title">Contemporary</h2>
+            <div class="philosophers-grid">
+                <div class="philosopher-card" data-philosopher="husserl">
+                    <div class="philosopher-name">Edmund Husserl</div>
+                    <div class="philosopher-period">(1859-1938)</div>
+                    <div class="philosopher-core">Phenomenology, intentionality of consciousness</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="russell">
+                    <div class="philosopher-name">Bertrand Russell</div>
+                    <div class="philosopher-period">(1872-1970)</div>
+                    <div class="philosopher-core">Analytic philosophy, logical atomism</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="barth">
+                    <div class="philosopher-name">Karl Barth</div>
+                    <div class="philosopher-period">(1886-1968)</div>
+                    <div class="philosopher-core">Dialectical theology, divine transcendence</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="heidegger">
+                    <div class="philosopher-name">Martin Heidegger</div>
+                    <div class="philosopher-period">(1889-1976)</div>
+                    <div class="philosopher-core">Ontology, analysis of Dasein</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="wittgenstein">
+                    <div class="philosopher-name">Ludwig Wittgenstein</div>
+                    <div class="philosopher-period">(1889-1951)</div>
+                    <div class="philosopher-core">Philosophy of language, language games</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="quine">
+                    <div class="philosopher-name">Willard Van Orman Quine</div>
+                    <div class="philosopher-period">(1908-2000)</div>
+                    <div class="philosopher-core">Indeterminacy of meaning, critique of reductionism</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="sartre">
+                    <div class="philosopher-name">Jean-Paul Sartre</div>
+                    <div class="philosopher-period">(1905-1980)</div>
+                    <div class="philosopher-core">Existentialism, existence precedes essence</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="foucault">
+                    <div class="philosopher-name">Michel Foucault</div>
+                    <div class="philosopher-period">(1926-1984)</div>
+                    <div class="philosopher-core">Theory of power, relationship between knowledge and power</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="era-section">
+            <h2 class="era-title">Late Contemporary</h2>
+            <div class="philosophers-grid">
+                <div class="philosopher-card" data-philosopher="rawls">
+                    <div class="philosopher-name">John Rawls</div>
+                    <div class="philosopher-period">(1921-2002)</div>
+                    <div class="philosopher-core">Political philosophy, theory of justice</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="derrida">
+                    <div class="philosopher-name">Jacques Derrida</div>
+                    <div class="philosopher-period">(1930-2004)</div>
+                    <div class="philosopher-core">Deconstruction, indeterminacy of meaning</div>
+                </div>
+                <div class="philosopher-card" data-philosopher="butler">
+                    <div class="philosopher-name">Judith Butler</div>
+                    <div class="philosopher-period">(1956-)</div>
+                    <div class="philosopher-core">Gender theory, performativity</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color misuse-color"></div>
+                <span>Common Misuse</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color correct-color"></div>
+                <span>Correct Understanding</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color impact-color"></div>
+                <span>Social Impact</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="misuse-panel" id="misusePanel">
+        <div class="panel-header">
+            <span class="close-btn" id="closeBtn">&times;</span>
+            <h2 class="misuse-title" id="misuseTitle"></h2>
+        </div>
+        <div class="panel-content" id="panelContent"></div>
+    </div>
+    
+    <script>
+        const philosopherData = {
+            socrates: {
+                name: "Socrates",
+                misuse: "Using 'I know that I know nothing' to justify intellectual resignation and avoid engaging in discussions",
+                correct: "'Knowledge of ignorance' means recognizing the limits of one's knowledge and continuing dialogue to seek better understanding",
+                impact: "Discourages citizen participation in democratic processes by claiming 'non-experts cannot have opinions' on social issues, weakening democratic engagement"
+            },
+            plato: {
+                name: "Plato", 
+                misuse: "Using the 'ideal society' concept to criticize the imperfection of reality and reject reform efforts",
+                correct: "Theory of Forms serves as a conceptual tool for better understanding reality and guidance for improvement",
+                impact: "Rejects incremental improvements by claiming 'imperfect reforms are meaningless,' causing social progress stagnation"
+            },
+            aristotle: {
+                name: "Aristotle",
+                misuse: "Treating logic as absolute formal rules, ignoring context and situation in arguments",
+                correct: "Logic is a tool for thinking; practical wisdom (phronesis) in specific situations is crucial",
+                impact: "Reduces complex social problems to simple logical formulas, hindering the search for realistic solutions"
+            },
+            augustine: {
+                name: "Augustine",
+                misuse: "Using the concept of 'original sin' to emphasize fundamental human evil and deny possibilities for social reform",
+                correct: "Original sin recognizes human limitations while showing possibilities for salvation and improvement through grace",
+                impact: "Leads to resignation from social justice efforts by claiming 'humans are fundamentally evil, so institutional reform is meaningless'"
+            },
+            aquinas: {
+                name: "Thomas Aquinas",
+                misuse: "Using 'natural law' to absolutize specific social institutions or values",
+                correct: "Natural law is moral inquiry through reason, requiring interpretation according to historical circumstances",
+                impact: "Justifies existing power structures and discriminatory institutions as 'natural order,' blocking transformation"
+            },
+            descartes: {
+                name: "René Descartes",
+                misuse: "Converting 'doubt everything' into relativism or nihilism claiming 'nothing can be believed'",
+                correct: "Methodical doubt is a constructive method to find a secure foundation for knowledge",
+                impact: "Neutralizes fact-based policy discussions by claiming 'truth doesn't exist,' promoting post-truth society"
+            },
+            locke: {
+                name: "John Locke",
+                misuse: "Using 'natural rights' for unlimited individualism or absolutization of private property rights",
+                correct: "Natural rights are the foundation of social contract and require coordination with others' rights",
+                impact: "Justifies extreme individualism that ignores social responsibility, leading to widening inequality and community dissolution"
+            },
+            hume: {
+                name: "David Hume",
+                misuse: "Misinterpreting the 'is-ought distinction' as 'value judgments are subjective and therefore cannot be discussed'",
+                correct: "The distinction between facts and values serves as a starting point for more precise moral discussion",
+                impact: "Relativizes moral and political judgments as 'individual freedom,' making social consensus formation difficult"
+            },
+            kant: {
+                name: "Immanuel Kant",
+                misuse: "Applying moral law as rigid rules, ignoring circumstances and consequences in formalistic approaches",
+                correct: "Moral law represents universal principles through practical reason; judgment in specific situations is important",
+                impact: "Lacks flexibility in addressing complex social problems, leading to ineffective policies and social division"
+            },
+            hegel: {
+                name: "Georg Wilhelm Friedrich Hegel",
+                misuse: "Misunderstanding dialectics as simple 'opposition→synthesis' patterns to justify easy compromises",
+                correct: "Dialectics is the logic of developmental change through contradiction, involving qualitative transformation",
+                impact: "Attempts to solve fundamental structural problems through superficial adjustments, avoiding essential reform"
+            },
+            kierkegaard: {
+                name: "Søren Kierkegaard",
+                misuse: "Interpreting existentialism as extreme individualism, abandoning social responsibility",
+                correct: "Existence involves responsible choices formed within relationships with others",
+                impact: "Hinders collective responses to social problems by claiming 'individual choices are beyond society's concern'"
+            },
+            marx: {
+                name: "Karl Marx",
+                misuse: "Applying class struggle theory as simple opposition schemes, dichotomizing complex social relations",
+                correct: "Class analysis is a tool for structural understanding of capitalist production relations",
+                impact: "Simplifies complex social problems into 'us vs them' frameworks, making constructive dialogue and cooperation difficult"
+            },
+            nietzsche: {
+                name: "Friedrich Nietzsche",
+                misuse: "Using 'God is dead' as justification for moral relativism, misunderstanding it as 'anything goes'",
+                correct: "Critique of existing values is a call for creating new values, demanding higher responsibility",
+                impact: "Abandons moral responsibility, destroying social solidarity and commitment to common good"
+            },
+            husserl: {
+                name: "Edmund Husserl",
+                misuse: "Misunderstanding phenomenology as subjectivism, claiming 'individual experience is everything' and denying objectivity",
+                correct: "Phenomenology aims for more universal understanding through structural analysis of consciousness",
+                impact: "Makes common factual recognition difficult, hindering evidence-based policy discussions"
+            },
+            russell: {
+                name: "Bertrand Russell",
+                misuse: "Misunderstanding logical positivism as scientism, devaluing humanistic values",
+                correct: "Logical analysis is a tool for clear thinking and doesn't deny the importance of values",
+                impact: "Emphasizes only technical efficiency, leading to policy decisions that disregard social values and humanity"
+            },
+            barth: {
+                name: "Karl Barth",
+                misuse: "Using divine transcendence as reason to refuse engagement with secular social problems",
+                correct: "Divine transcendence creates responsibility for realizing justice in the real world",
+                impact: "Confines religious values to private spheres, neutralizing religious motivation for social justice"
+            },
+            heidegger: {
+                name: "Martin Heidegger",
+                misuse: "Misunderstanding 'questioning of Being' as abstract speculation, justifying escapism from reality",
+                correct: "Ontology questions concrete ways of being in the real world",
+                impact: "Separates philosophical reflection from practice, hindering intellectual engagement with social problems"
+            },
+            wittgenstein: {
+                name: "Ludwig Wittgenstein",
+                misuse: "Interpreting language game theory as relativism, simplifying it as 'values are determined by culture'",
+                correct: "Language games show meaning formation within shared practices, opening possibilities for mutual understanding",
+                impact: "Makes dialogue between different cultures impossible, promoting separatism based on diversity"
+            },
+            quine: {
+                name: "Willard Van Orman Quine",
+                misuse: "Developing indeterminacy of meaning into extreme relativism claiming 'objective truth doesn't exist'",
+                correct: "Indeterminacy of meaning shows the revisability of language and theory, opening paths to better theories",
+                impact: "Undermines authority of scientific knowledge and expert judgment, promoting anti-intellectualism"
+            },
+            sartre: {
+                name: "Jean-Paul Sartre",
+                misuse: "Interpreting 'existence precedes essence' as irresponsible libertarianism claiming 'you can become anything'",
+                correct: "Freedom involves responsible choices within situations, including responsibility to others",
+                impact: "Ignores social constraints and structural inequality, reinforcing self-responsibility narratives claiming 'you can do anything with effort'"
+            },
+            foucault: {
+                name: "Michel Foucault",
+                misuse: "Misunderstanding power theory as conspiracy theory, claiming 'everything is power manipulation' and rejecting constructive reform",
+                correct: "Power analysis aims to build better social relations through understanding mechanisms of domination",
+                impact: "Trivializes institutional reform and political participation as 'power games,' neutralizing efforts for social transformation"
+            },
+            rawls: {
+                name: "John Rawls",
+                misuse: "Misusing the 'veil of ignorance' as abstract thought experiment that ignores real inequality",
+                correct: "The veil of ignorance is a method for thinking about fair social institutions by excluding existing privileges",
+                impact: "Those with vested interests misuse it to conceal their positions and justify inequitable status quo"
+            },
+            derrida: {
+                name: "Jacques Derrida",
+                misuse: "Misunderstanding deconstruction as destructionism advocating 'destroy everything'",
+                correct: "Deconstruction opens new possibilities through critical examination of fixed meanings and power structures",
+                impact: "Treats constructive criticism as mere destruction, hindering efforts for institutional improvement and social development"
+            },
+            butler: {
+                name: "Judith Butler",
+                misuse: "Oversimplifying gender performativity as 'gender can be completely freely chosen'",
+                correct: "Performativity is the process of subject formation through repetitive practices within social constraints",
+                impact: "Reduces gender issues to individual choice problems, overlooking needs for structural discrimination and institutional transformation"
+            }
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const philosopherCards = document.querySelectorAll('.philosopher-card');
+            const overlay = document.getElementById('overlay');
+            const misusePanel = document.getElementById('misusePanel');
+            const panelContent = document.getElementById('panelContent');
+            const misuseTitle = document.getElementById('misuseTitle');
+            const closeBtn = document.getElementById('closeBtn');
+            
+            philosopherCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const philosopherId = this.dataset.philosopher;
+                    const data = philosopherData[philosopherId];
+                    
+                    if (data) {
+                        misuseTitle.textContent = `${data.name}'s Concept Misuse`;
+                        
+                        panelContent.innerHTML = `
+                            <div class="misuse-section">
+                                <h3>❌ Common Misuse</h3>
+                                <div class="misuse-example">
+                                    ${data.misuse}
+                                </div>
+                            </div>
+                            
+                            <div class="misuse-section">
+                                <h3>✅ Correct Understanding</h3>
+                                <div class="correct-understanding">
+                                    ${data.correct}
+                                </div>
+                            </div>
+                            
+                            <div class="misuse-section">
+                                <h3>⚠️ Negative Impact on Social Structure Problem Discussion</h3>
+                                <div class="problem-impact">
+                                    ${data.impact}
+                                </div>
+                            </div>
+                        `;
+                        
+                        overlay.style.display = 'block';
+                        misusePanel.style.display = 'block';
+                    }
+                });
+            });
+            
+            function closePanel() {
+                overlay.style.display = 'none';
+                misusePanel.style.display = 'none';
+            }
+            
+            closeBtn.addEventListener('click', closePanel);
+            overlay.addEventListener('click', closePanel);
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closePanel();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

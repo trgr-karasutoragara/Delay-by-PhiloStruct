@@ -1,7 +1,6 @@
-[![MIT](https://img.shields.io/github/license/trgr-karasutoragara/Delay-by-PhiloStruct)](https://github.com/trgr-karasutoragara/Delay-by-PhiloStruct)
-[![Stars](https://img.shields.io/github/stars/trgr-karasutoragara/Delay-by-PhiloStruct?style=social)](https://github.com/trgr-karasutoragara/Delay-by-PhiloStruct/stargazers)
+![MIT](https://img.shields.io/github/license/trgr-karasutoragara/Delay-by-PhiloStruct)
+![Stars](https://img.shields.io/github/stars/trgr-karasutoragara/Delay-by-PhiloStruct?style=social)
 ![Last Commit](https://img.shields.io/github/last-commit/trgr-karasutoragara/Delay-by-PhiloStruct)
-
 
 <br>
 
